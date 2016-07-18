@@ -1,0 +1,20 @@
+<label>
+    Search
+</label>
+<form class="input-group" method="GET">
+   <input class="form-control" name="q" ng-model="q" placeholder="Search for..." type="text">
+       <span class="input-group-btn">
+           <button class="btn btn-default" ng-click="search(q)" type="submit">
+               <span aria-hidden="true" class="glyphicon glyphicon-search">
+               </span>
+           </button>
+       </span>
+   </input>
+</form>
+<div>
+   <br>
+   <ul ng-repeat="r in searchResults">
+      {{r.id}} - {{r.name}} - {{r.email}}
+   </ul>
+   </br>
+</div>
