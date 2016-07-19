@@ -1,7 +1,7 @@
-app.directive('signin', function() {
+app.directive('signup', function() {
     return {
         restrict: "E",
-        templateUrl: 'client/html/form.html'
+        templateUrl: 'client/html/signup.html'
     };
 });
 
