@@ -1,9 +1,45 @@
-<form action="server/form.php" method="post" class="form-group">
-    <label>Name:</label>
-    <input type="text" name="name" class="form-control" placeholder="Name">
+<form method="post" class="form-group" name="SignUpForm">
+    <!-- action="server/auth/signup.php" -->
+    <label>First Name and Last name:</label>
+    <div class="input-group">
+        <input data-ng-model="FirstName" name="FirstName" type="text" class="form-control" placeholder="First Name" required/>
+        <span class="input-group-addon">-</span>
+        <input data-ng-model="LastName" name="LastName" type="text" class="form-control" placeholder="Last Name" required/>
+    </div>
+    <br>
+    <label>User Name:</label>
+    <input data-ng-model="UserName" name="UserName" type="text" class="form-control" placeholder="User Name" required data-ng-minlength="3" data-ng-maxlength="32" pattern="^\w+$">
     <br>
     <label>E-mail:</label>
-    <input type="text" name="email" class="form-control" placeholder="Email">
+    <input data-ng-model="Email" name="Email" type="email" class="form-control" placeholder="Email" data-ng-maxlength="255" required>
+    <br>
+    <label>Password:</label>
+    <input data-ng-model="Password" data-ng-minlength="8" data-ng-maxlength="32" name="Password" type="password" class="form-control" placeholder="Password" required>
+    <br>
+    <label>Confirm Password:</label>
+    <input data-ng-model="ConfirmPassword" type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" required>
+    <span data-ng-if="(SignUpForm.Password.dirty && SignUpForm.Password.$invalid && (SignUpForm.Password != SignUpForm.ConfirmPassword))">Passwords don't match</span>
+    {{Password}} {{ConfirmPassword}} 
     <br>
     <input type="submit" class="btn btn-block btn-default">
 </form>
+<!-- User Name Messages -->
+<span class="has-danger" data-ng-if="SignUpForm.UserName.$invalid && (SignUpForm.UserName.$dirty || SignUpForm.UserName.$touched)" ng-messages="SignUpForm.UserName.$error">
+<span ng-message="required">Username is required</span>
+<span ng-message="pattern">Username must only contain Alphabet characters</span>
+<span ng-message="minlength">Username must be at least 3 characters</span>
+<span ng-message="maxlength">Username must be a max of 32 characters</span>
+</span>
+<!-- Password Messages -->
+<span class="text-danger" ng-show="SignUpForm.ConfirmPassword.$error">Bad - Confirm Password </span>
+<span class="text-danger" data-ng-if="SignUpForm.Password.$invalid && (SignUpForm.Password.$dirty || SignUpForm.Password.$touched)" ng-messages="SignUpForm.Password.$error">
+<span ng-message="required">Password is required</span>
+<br>
+<span ng-message="pattern">Password must only contain Alphabet characters</span>
+<br>
+<span ng-message="minlength">Password must be at least 8 characters</span>
+<br>
+<span ng-message="maxlength">Password must be a max of 32 characters</span>
+<br>
+</span>
+<span data-ng-if="SignUpForm.Password.$valid && (SignUpForm.Password === SignUpForm.ConfirmPassword)"><span ng-message=""></span></span>

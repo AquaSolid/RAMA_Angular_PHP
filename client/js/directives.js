@@ -1,3 +1,23 @@
+/*var compareTo = function() {
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function(scope, element, attributes, ngModel) {
+             
+            ngModel.$validators.compareTo = function(modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+ 
+            scope.$watch("otherModelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    };
+};
+module.directive("compareTo", compareTo);*/
+
 app.directive('signup', function() {
     return {
         restrict: "E",
@@ -25,12 +45,10 @@ app.directive('printpeople', function() {
         templateUrl: 'client/html/printpeople.html'
     };
 });
-/*
-app.directive('dbprint', function() {
-	return {
-		restrict: "E",
-		template:   "<p>Person.id: {{person.id}}</p>" +
-					"<p>Person.name: {{person.name}}</p>" +
-					"<p>Person.email: {{person.email}}</p>" + "<hr>"
-	};
-});*/
+
+app.directive('printsearch', function() {
+    return {
+        restrict: "E",
+        templateUrl: 'client/html/printsearch.html'
+    };
+});

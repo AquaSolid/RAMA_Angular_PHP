@@ -2,17 +2,6 @@ app.controller('mainCtrl', function($scope, $location, $http) {
 
     $scope.brand = 'Brand';
 
-    $scope.changeDiv = function() {
-        $scope.signin = "<p>HA!</p>"
-    };
-
-
-
-
-
-
-
-
     /*Get Data from 'people' Table*/
     $http.get("http://localhost/rama/server/api.php/people/")
         .then(function(response) {
@@ -20,7 +9,6 @@ app.controller('mainCtrl', function($scope, $location, $http) {
         });
 
     $scope.search = function(query) {
-        //alert(query);
         var url = "http://localhost/rama/server/search.php?q=" + query;
         $http.get(url)
             .then(function(response) {
