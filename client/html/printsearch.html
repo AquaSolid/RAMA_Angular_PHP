@@ -1,6 +1,6 @@
 <div>
    <br>
-   <ul ng-repeat="r in searchResults">
+   <ul ng-repeat="r in searchResults | filter : q">
       {{r.id}} - {{r.name}} - {{r.email}}
    </ul>
    </br>

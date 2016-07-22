@@ -1,1 +1,13 @@
-<p>Log In</p>
+<form action="server/auth/login.php" method="post" class="form-group" name="LoginForm">
+    <label>User Name or Email:</label>
+    <div ng-class="(SignUpForm.UserName.$dirty && SignUpForm.UserName.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+        <input data-ng-model="UserName" name="UserName" type="text" class="form-control" placeholder="User Name or Email" required data-ng-minlength="3" data-ng-maxlength="32" pattern="^\w+$">
+        <span ng-class="(SignUpForm.UserName.$dirty && SignUpForm.UserName.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+    </div>
+    <label>Password:</label>
+    <div ng-class="(SignUpForm.Password.$dirty && SignUpForm.Password.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+        <input data-ng-model="Password" data-ng-minlength="8" data-ng-maxlength="32" name="Password" type="password" class="form-control" placeholder="Password" required>
+        <span ng-class="(SignUpForm.Password.$dirty && SignUpForm.Password.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+    </div>
+    <input ng-class="(SignUpForm.$valid && (Password === ConfirmPassword)) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
+</form>
