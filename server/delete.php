@@ -1,5 +1,4 @@
 <?php
-echo "string" . $_SERVER['REQUEST_METHOD'];
 //if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     if (isset($_GET['q'])) {
         $conn = mysqli_connect('localhost', 'root', '') or die('Cannot connect.');
