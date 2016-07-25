@@ -1,9 +1,10 @@
 <?php
-require_once '../dbconnect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['UserName']) && isset($_GET['Password'])) {
         if (!empty($_GET['UserName']) && !empty($_GET['Password'])) {
+
+            require_once '../dbconnect.php';
 
         	/*Grabing the data*/
             $login_name = $_GET['UserName'];
@@ -41,7 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $data = json_decode($data, true);
 
             /*Starting the Session*/
-            session_start();
+            if (!isset($_SESSION)){
+                session_start();
+            }
+
             /*Applying the data to the Session's Variables*/
             $_SESSION["ID"] = $data['Users'][0]['ID'];
             $_SESSION["UserName"] = $data['Users'][0]['UserName'];
@@ -51,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
             print_r($_SESSION); echo "<br>"; echo $_SESSION["Email"];
 
-            // close mysql connection
+            // Closing MySQL Connection
             mysqli_close($conn);
         }
     }
