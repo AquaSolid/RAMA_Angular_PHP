@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['FirstName']) && isset($_POST['LastName']) && isset($_POST['UserName']) && isset($_POST['Email']) && isset($_POST['Password'])) {
         if (!empty($_POST['FirstName']) && !empty($_POST['LastName']) && !empty($_POST['UserName']) && !empty($_POST['Email']) && !empty($_POST['Password'])) {
             
-            require_once '../dbconnect.php';
+            require_once '../connection.php';
             require_once '../utils.php';
             
             /*Grabing the data*/

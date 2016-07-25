@@ -1,21 +1,22 @@
-
 <!-- data-action="server/auth/login.php" action="server/auth/login.php" method="POST" -->
-<form action="server/auth/login.php" method="POST" class="form-group" name="LogInForm">
-    <label>User Name or Email:</label>
-    <div ng-class="(LogInForm.UserName.$dirty && LogInForm.UserName.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
-        <input data-ng-model="UserName" name="UserName" type="text" class="form-control" placeholder="User Name or Email" required data-ng-minlength="3" data-ng-maxlength="32">
-        <span ng-class="(LogInForm.UserName.$dirty && LogInForm.UserName.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+<!-- <input ng-click="ngPOSTLogin()" type="submit" value="Look" class="btn btn-block btn-default"> -->
+<div ng-controller="AuthController as auth"> {{ctlr}}
+    <form class="form-group" name="LogInForm">
+        <label>User Name or Email:</label>
+        <div ng-class="(LogInForm.UserName.$dirty && LogInForm.UserName.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+            <input data-ng-model="UserName" name="UserName" type="text" class="form-control" placeholder="User Name or Email" required data-ng-minlength="3" data-ng-maxlength="32">
+            <span ng-class="(LogInForm.UserName.$dirty && LogInForm.UserName.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+        </div>
+        <label>Password:</label>
+        <div ng-class="(LogInForm.Password.$dirty && LogInForm.Password.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+            <input data-ng-model="Password" data-ng-minlength="8" data-ng-maxlength="32" name="Password" type="password" class="form-control" placeholder="Password" required>
+            <span ng-class="(LogInForm.Password.$dirty && LogInForm.Password.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+        </div>
+        <input ng-click="ngPOSTLogin()" ng-class="(LogInForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
+    </form>
+    <div class="row">
+        <p>Welcome, {{logins.UserName}}!</p>
+        <p>Logins: {{logins}}</p>
+        <p>LogTest: {{logTest}}</p>
     </div>
-    <label>Password:</label>
-    <div ng-class="(LogInForm.Password.$dirty && LogInForm.Password.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
-        <input data-ng-model="Password" data-ng-minlength="8" data-ng-maxlength="32" name="Password" type="password" class="form-control" placeholder="Password" required>
-        <span ng-class="(LogInForm.Password.$dirty && LogInForm.Password.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
-    </div>
-    <input ng-class="(LogInForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
-</form>
-<!-- 
-<div ng-controller="AuthController as auth">
-    <input ng-click="ngPOSTLogin()" type="submit" value="Look" class="btn btn-block btn-default">
-</div> 
--->
-
+</div>

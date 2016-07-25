@@ -1,7 +1,9 @@
-<div ng-repeat="person in people">
-    <p>Person.id: {{person.id}} - Person.name: {{person.name}}
-        <button ng-click="deletePerson(person.id)" class="btn btn-xs btn-danger pull-right">&nbsp;X&nbsp;</button>
-    </p>
-    <p>Person.email: {{person.email}}</p>
-    <hr>
+<div ng-controller="MainController as main">
+    <div ng-repeat="person in people">
+        <p>Person.id: {{person.id}} - Person.name: {{person.name}}
+            <button ng-click="deletePerson(person.id)" class="btn btn-xs btn-danger pull-right">&nbsp;X&nbsp;</button>
+        </p>
+        <p>Person.email: {{person.email}}</p>
+        <hr>
+    </div>
 </div>

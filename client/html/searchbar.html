@@ -1,10 +1,17 @@
-<form class="input-group" role="search" method="GET">
-   <input class="form-control" name="q" ng-model="q" placeholder="Search for..." type="text">
-       <span class="input-group-btn">
+<div ng-controller="MainController as main">
+    <form class="input-group" role="search" method="GET">
+        <input class="form-control" name="q" ng-model="q" placeholder="Search for..." type="text">
+        <span class="input-group-btn">
            <button class="btn btn-default" ng-click="search(q)" type="submit">
                <span aria-hidden="true" class="glyphicon glyphicon-search">
                </span>
-           </button>
-       </span>
-   </input>
-</form>
+        </button>
+        </span>
+        </input>
+    </form>
+    <br>
+    <ul ng-repeat="r in searchResults | filter : q">
+        {{r.id}} - {{r.name}} - {{r.email}}
+    </ul>
+    </br>
+</div>

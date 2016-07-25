@@ -1,7 +1,7 @@
 app.controller('MainController', function($scope, $location, $http) {
 
-    $scope.brand = 'Brand';
-    
+    $scope.brand = 'RAMA';
+
     /*Get Data from 'people' Table*/
     $http.get("http://localhost/rama/server/api.php/people/")
         .then(function(response) {

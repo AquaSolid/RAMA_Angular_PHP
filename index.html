@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        Title
+        RAMA
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -13,26 +13,19 @@
 
 <body>
     <div>
-        <div ng-controller="MainController as main">
-            <navbar></navbar>
-            <div class="container">
-                <div class="row text-left">
-                    <br>
-                    <div class="col-md-4">
-                        <printpeople></printpeople>
-                    </div>
-                    <div class="col-md-4">
-                        <div ng-view></div>
-                        <div class="row" ng-controller="AuthController as auth">
-                            <p>Welcome, {{logins.UserName}}!</p>
-                            <p>Everything: {{logins}}</p>
-                            <p>{{logTest}}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <searchbar></searchbar>
-                        <printsearch></printsearch>
-                    </div>
+        <navbar></navbar>
+        <div class="container">
+            <div class="row text-left">
+                <br>
+                <div class="col-md-4">
+                    <printpeople></printpeople>
+                </div>
+                <div class="col-md-4">
+                    <div ng-view></div>
+                </div>
+                <div class="col-md-4">
+                    <searchbar></searchbar>
+                    <printsearch></printsearch>
                 </div>
             </div>
         </div>
