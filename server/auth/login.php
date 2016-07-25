@@ -1,14 +1,15 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['UserName']) && isset($_GET['Password'])) {
-        if (!empty($_GET['UserName']) && !empty($_GET['Password'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['UserName']) && isset($_POST['Password'])) {
+        if (!empty($_POST['UserName']) && !empty($_POST['Password'])) {
 
             require_once '../dbconnect.php';
+            require_once '../utils.php';
 
         	/*Grabing the data*/
-            $login_name = $_GET['UserName'];
-            $password   = $_GET['Password'];
+            $login_name = test_input($_POST['UserName']);
+            $password   = test_input($_POST['Password']);
             
             $sql = "SELECT * FROM users WHERE 
 	    	(username = '" . $login_name . "' OR email = '" . $login_name . "') 
@@ -52,11 +53,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $_SESSION["FirstName"] = $data['Users'][0]['FirstName'];
             $_SESSION["LastName"] = $data['Users'][0]['LastName'];
             $_SESSION["Email"] = $data['Users'][0]['Email'];
+            $_SESSION["Logged"] = true;
 
-            print_r($_SESSION); echo "<br>"; echo $_SESSION["Email"];
+/*            print_r($_SESSION); echo "<br>"; echo $_SESSION["Email"];*/
+                        
+            header('Content-Type: application/json');
+            echo json_encode($_SESSION);
+
 
             // Closing MySQL Connection
             mysqli_close($conn);
+
+            /*Redirecting to main page*/
+            /*header("Location: http://localhost/rama/"); 
+            exit();*/
+            
         }
     }
 }

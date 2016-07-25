@@ -1,4 +1,6 @@
-<form action="server/auth/login.php" method="GET" class="form-group" name="LogInForm">
+
+<!-- data-action="server/auth/login.php" action="server/auth/login.php" method="POST" -->
+<form action="server/auth/login.php" method="POST" class="form-group" name="LogInForm">
     <label>User Name or Email:</label>
     <div ng-class="(LogInForm.UserName.$dirty && LogInForm.UserName.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
         <input data-ng-model="UserName" name="UserName" type="text" class="form-control" placeholder="User Name or Email" required data-ng-minlength="3" data-ng-maxlength="32">
@@ -11,4 +13,9 @@
     </div>
     <input ng-class="(LogInForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
 </form>
+<!-- 
+<div ng-controller="AuthController as auth">
+    <input ng-click="ngPOSTLogin()" type="submit" value="Look" class="btn btn-block btn-default">
+</div> 
+-->
 

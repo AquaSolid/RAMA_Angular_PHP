@@ -5,12 +5,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['FirstName']) && !empty($_POST['LastName']) && !empty($_POST['UserName']) && !empty($_POST['Email']) && !empty($_POST['Password'])) {
             
             require_once '../dbconnect.php';
+            require_once '../utils.php';
+            
             /*Grabing the data*/
-            $FirstName = $_POST['FirstName'];
-            $LastName  = $_POST['LastName'];
-            $UserName  = $_POST['UserName'];
-            $Email     = $_POST['Email'];
-            $Password  = $_POST['Password'];
+            $FirstName = test_input($_POST['FirstName']);
+            $LastName  = test_input($_POST['LastName']);
+            $UserName  = test_input($_POST['UserName']);
+            $Email     = test_input($_POST['Email']);
+            $Password  = test_input($_POST['Password']);
             
             /*Writing the SQL*/
             $sql = "INSERT INTO `users` (`ID`, `UserName`, `FirstName`, `LastName`, `Email`, `Password`, `UserRole`, `SignUpDate`) VALUES (NULL, '" . $UserName . "', '" . $FirstName . "', '" . $LastName . "', '" . $Email . "', '" . $Password . "', '0', CURRENT_TIMESTAMP);";
