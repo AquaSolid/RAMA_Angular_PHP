@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION["LastName"]  = $data['Users'][0]['LastName'];
             $_SESSION["Email"]     = $data['Users'][0]['Email'];
             $_SESSION["Logged"]    = true;
+            $_SESSION['LastSeen']  = date('m/d/Y h:i:s a', time());
             
             header('Content-Type: application/json');
             echo json_encode($_SESSION);

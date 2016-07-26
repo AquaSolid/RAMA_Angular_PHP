@@ -1,5 +1,5 @@
 <div ng-controller="AuthController as auth">
-    <form class="form-group" name="LogInForm">
+    <form ng-show='user == null' class="form-group" name="LogInForm">
         <label>User Name or Email:</label>
         <div ng-class="(LogInForm.UserName.$dirty && LogInForm.UserName.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
             <input data-ng-model="UserName" name="UserName" type="text" class="form-control" placeholder="User Name or Email" required data-ng-minlength="3" data-ng-maxlength="32">
@@ -10,8 +10,7 @@
             <input data-ng-model="Password" data-ng-minlength="8" data-ng-maxlength="32" name="Password" type="password" class="form-control" placeholder="Password" required>
             <span ng-class="(LogInForm.Password.$dirty && LogInForm.Password.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
         </div>
-        <input ng-click="ngPOSTLogin()" ng-class="(LogInForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
+        <input ng-click="ngPOSTLogIn()" ng-class="(LogInForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
     </form>
-
-    <p ng-show='user != null' class="text-center">You are logged in. </p>
+    <p ng-show='user != null' class="text-center">You are now logged in. </p>
 </div>

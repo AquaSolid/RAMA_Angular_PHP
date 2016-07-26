@@ -1,8 +1,12 @@
-app.controller("AuthController", function($scope, $http, $rootScope, $window) {
+app.controller("AuthController", function($scope, $http, $rootScope, $window, $location, $timeout) {
 
     $scope.ctlr = 'Auth';
 
-    $scope.ngPOSTLogin = function() {
+    if ($window.sessionStorage['user'] != null) {
+        $rootScope.user = JSON.parse($window.sessionStorage['user']);
+    }
+
+    $scope.ngPOSTLogIn = function() {
         var data = {
             UserName: $scope.UserName,
             Password: $scope.Password
@@ -10,7 +14,26 @@ app.controller("AuthController", function($scope, $http, $rootScope, $window) {
         $http.post('server/auth/login.php', JSON.stringify(data))
             .then(function(result) {
                 $rootScope.user = result.data;
-                //$window.sessionStorage['$rootScope.user'] = JSON.stringify($rootScope.user);
+                $window.sessionStorage['user'] = JSON.stringify($rootScope.user);
             });
     };
+
+    $scope.ngPOSTLogOut = function() {
+        if ($rootScope.user) {
+            $rootScope.user = null;
+        }
+        if ($window.sessionStorage) {
+            $window.sessionStorage.clear();
+        }
+        $http.post('server/auth/logout.php')
+            .then(function(result) {
+                $scope.logout = result.data;
+            });
+        /*
+        $timeout(function() {
+            $location.path('/');
+        }, 10000);
+        */
+    };
+
 });
