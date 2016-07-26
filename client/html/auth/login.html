@@ -1,6 +1,4 @@
-<!-- data-action="server/auth/login.php" action="server/auth/login.php" method="POST" -->
-<!-- <input ng-click="ngPOSTLogin()" type="submit" value="Look" class="btn btn-block btn-default"> -->
-<div ng-controller="AuthController as auth"> {{ctlr}}
+<div ng-controller="AuthController as auth">
     <form class="form-group" name="LogInForm">
         <label>User Name or Email:</label>
         <div ng-class="(LogInForm.UserName.$dirty && LogInForm.UserName.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
@@ -14,9 +12,6 @@
         </div>
         <input ng-click="ngPOSTLogin()" ng-class="(LogInForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
     </form>
-    <div class="row">
-        <p>Welcome, {{logins.UserName}}!</p>
-        <p>Logins: {{logins}}</p>
-        <p>LogTest: {{logTest}}</p>
-    </div>
+
+    <p ng-show='user != null' class="text-center">You are logged in. </p>
 </div>

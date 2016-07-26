@@ -1,5 +1,6 @@
 app.controller('MainController', function($scope, $location, $http) {
 
+    $scope.ctlr = 'Main';
     $scope.brand = 'RAMA';
 
     /*Get Data from 'people' Table*/
