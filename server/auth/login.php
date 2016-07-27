@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = json_decode($data, true);
             
             /*Starting the Session*/
-            if (!isset($_SESSION)) {
+            if (session_status() == PHP_SESSION_NONE) {
                 session_start();
             }
             

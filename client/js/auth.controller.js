@@ -24,11 +24,14 @@ app.controller("AuthController", function($scope, $http, $rootScope, $window, $l
         }
         if ($window.sessionStorage) {
             $window.sessionStorage.clear();
+            alert('Entered..');
         }
+        alert('Before HTTP');
         $http.post('server/auth/logout.php')
             .then(function(result) {
                 $scope.logout = result.data;
             });
+        alert('After HTTP');
         /*
         $timeout(function() {
             $location.path('/');

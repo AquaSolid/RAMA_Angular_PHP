@@ -11,6 +11,7 @@ app.config(function($routeProvider) {
             templateUrl: "client/html/auth/login.html"
         })
         .when("/logout", {
+            controller: 'AuthController',
             templateUrl: "client/html/auth/logout.html"
         });
 
