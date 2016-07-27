@@ -11,8 +11,5 @@ if (isset($_COOKIE["PHPSESSID"])) {
             session_destroy();
         }
     }
-    echo json_encode('You are now logged out.');
-} else {
-    echo json_encode('You are now logged out..');
 }
 ?>

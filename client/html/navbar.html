@@ -39,7 +39,7 @@
                         <li ng-show='user != null' role="separator" class="divider"></li>
                         <li ng-show='user == null'><a href="#signup">Sign up</a></li>
                         <li ng-show='user == null'><a href="#login">Log In</a></li>
-                        <li ng-click='ngPOSTLogOut()' ng-show='user != null'><a href="#logout">Log Out</a></li>
+                        <li ng-show="user != null"><a ng-click="ngPOSTLogOut()">Log Out</a></li>
                     </ul>
                 </li>
             </ul>

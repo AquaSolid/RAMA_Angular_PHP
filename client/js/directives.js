@@ -1,9 +1,28 @@
+/*From Blog*/
+
+app.directive('posts', function() {
+    return {
+        restrict: "E",
+        templateUrl: 'client/html/blog/posts.html'
+    };
+});
+
+/*From Auth*/
 app.directive('signup', function() {
     return {
         restrict: "E",
-        templateUrl: 'client/html/signup.html'
+        templateUrl: 'client/html/auth/signup.html'
     };
 });
+
+/*From Utils*/
+app.directive('lorem', function() {
+    return {
+        restrict: "E",
+        templateUrl: 'client/html/utils/lorem.html'
+    };
+});
+
 
 app.directive('navbar', function() {
     return {

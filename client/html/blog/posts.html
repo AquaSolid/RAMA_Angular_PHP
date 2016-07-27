@@ -1,0 +1,9 @@
+<div ng-controller="BlogController as blog">
+    <h3>Posts: </h3>{{ctlr}}
+    <div ng-repeat="post in posts">
+        <hr> {{post.ID}} - {{post.Title}} - {{post.UserID}}
+        <br>
+        <div ng-bind-html="ngHTML(post.Content)"></div>
+    </div>
+    <hr>
+</div>
