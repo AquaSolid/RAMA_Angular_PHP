@@ -1,0 +1,18 @@
+<h3 class="text-center">Make a Post</h3>
+<form ng-show='user != null' action="server/blog/makepost.php" method="POST" class="form-group" name="PostForm">
+    <label>Title: </label>
+    <div ng-class="(PostForm.Title.$dirty && PostForm.Title.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+        <input data-ng-model="Title" data-ng-minlength="3" data-ng-maxlength="255" name="Title" type="text" class="form-control" placeholder="Title" required/>
+        <span ng-class="(PostForm.Title.$dirty && PostForm.Title.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+    </div>
+    <label>Content: </label>
+    <div ng-class="(PostForm.Content.$dirty && PostForm.Content.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+        <textarea data-ng-model="Content" rows="8" name="Content" type="text" class="form-control" placeholder="Content" required></textarea>
+        <span ng-class="(PostForm.Content.$dirty && PostForm.Content.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+    </div>
+    <div ng-controller="AuthController as auth">
+        <input class="ng-hide" type="number" name="UserID" value="{{user.ID}}">
+    </div>
+    <br>
+    <input ng-class="(PostForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
+</form>

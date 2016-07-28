@@ -18,20 +18,13 @@ app.controller("AuthController", function($scope, $http, $rootScope, $window, $l
             });
     };
 
-    $scope.ngPOSTLogOut = function () {
+    $scope.ngPOSTLogOut = function() {
         if ($rootScope.user) {
             $rootScope.user = null;
         }
         if ($window.sessionStorage) {
             $window.sessionStorage.clear();
         }
-        /*
-                $http.post('server/auth/logout.php')
-                    .then(function(result) {
-                        $scope.logout = result.data;
-                        $location.path('/logout')
-                    });
-        */
         $http.get('server/auth/logout.php')
             .success(function(status) {
                 $scope.logout = 'You have logged out successfully';
@@ -39,14 +32,8 @@ app.controller("AuthController", function($scope, $http, $rootScope, $window, $l
             })
             .error(function(status) {
                 $scope.logout = 'There was an error while trying to log out';
-                $scope.num = 0;
             });
         $location.path('/logout')
-            //alert('php');
-            /*    $timeout(function() {
-                    $location.path('/');
-                }, 2000);
-            */
     };
 
 });

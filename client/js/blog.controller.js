@@ -1,18 +1,6 @@
-app.controller('BlogController', function($scope, $location, $http, $sce) {
+app.controller('BlogController', function($scope, $location, $http, $sce, $routeParams) {
 
     $scope.ctlr = 'Blog';
-
-    /*Get the data from the `posts` table*/
-    /*$http.get('server/blog/posts.php')
-        .then(function(result) {});
-    .success(function(status) {
-            $scope.posts = result.data;
-
-        })
-        .error(function(status) {
-            $scope.posts = 'There was an error while trying to get the posts';
-
-        });*/
 
     $http.get('server/blog/posts.php')
         .success(function(data) {
@@ -24,7 +12,16 @@ app.controller('BlogController', function($scope, $location, $http, $sce) {
             console.log($scope.data.error.status);
         });
 
-        
+    $http.get('server/blog/post.php?p=' + $routeParams.slug)
+        .success(function(data) {
+            $scope.post = data.Post[0];
+            $scope.ngdata = data;
+        })
+        .error(function(error, status) {
+            $scope.data.error = { message: error, status: status };
+            console.log($scope.data.error.status);
+        });
+
     $scope.ngHTML = function (html) {
         return $sce.trustAsHtml(html);
     }

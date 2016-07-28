@@ -1,6 +1,5 @@
 <?php
 
-header('Content-Type: application/json');
 if (isset($_COOKIE["PHPSESSID"])) {
     if (isset($_SESSION["Logged"])) {
         if ($_SESSION["Logged"] == true) {
