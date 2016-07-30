@@ -1,5 +1,12 @@
 /*From Blog*/
 
+app.directive('searchposts', function() {
+    return {
+        restrict: "E",
+        templateUrl: 'client/html/blog/searchposts.html'
+    };
+});
+
 app.directive('posts', function() {
     return {
         restrict: "E",

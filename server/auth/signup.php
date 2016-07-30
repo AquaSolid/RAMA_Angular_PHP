@@ -28,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             /*Closing the connection*/
             mysqli_close($conn);
+        
+            redirect('http://localhost/rama/');
         }
     }
 }

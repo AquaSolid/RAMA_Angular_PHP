@@ -24,5 +24,9 @@ app.config(function($routeProvider) {
         })
         .when("/:slug", {
             templateUrl: "client/html/blog/post.html"
-        });
+        })
+        .when("/:slug/update", {
+            templateUrl: "client/html/blog/makepost.html"
+        });;
+
 });

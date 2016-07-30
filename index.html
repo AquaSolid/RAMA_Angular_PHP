@@ -14,17 +14,20 @@
 <body>
     <div>
         <navbar></navbar>
-        <div class="container">
+        <div class="container=fluid">
             <div class="row">
                 <div class="col-md-3">
-                    <searchbar></searchbar>
-                    <posts></posts>
+                    <div class="col-xs-12">
+                        <searchposts></searchposts>
+                    </div>
                 </div>
                 <div class="col-md-7">
                     <div ng-view></div>
                 </div>
                 <div class="col-md-2">
-                    <lorem></lorem>
+                    <div class="col-xs-12">
+                        <lorem></lorem>
+                    </div>
                 </div>
             </div>
         </div>

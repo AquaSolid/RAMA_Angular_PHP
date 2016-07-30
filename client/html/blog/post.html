@@ -1,6 +1,6 @@
 <div ng-controller="BlogController as blog">
-    <h3>{{post.Title}}</h3>
-    <div ng-bind-html="ngHTML(post.Content)"></div>
+    <h3 class="dont-break-out">{{post.Title}}</h3>
+    <div class="dont-break-out" ng-bind-html="ngHTML(post.Content)"></div>
     <hr>
     <p class="text-right">{{post.DateSubmited}} by {{post.UserName}}</p>
 </div>

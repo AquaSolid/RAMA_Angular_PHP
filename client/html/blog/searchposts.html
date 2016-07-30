@@ -1,0 +1,13 @@
+<div ng-controller="BlogController as blog">
+    <form class="input-group" role="search" method="GET">
+        <input class="form-control" name="q" ng-model="q" placeholder="Search posts.." type="text">
+        <span class="input-group-btn">
+           <button class="btn btn-default" ng-click="search(q)" type="submit">
+               <span aria-hidden="true" class="glyphicon glyphicon-search">
+               </span>
+        </button>
+        </span>
+        </input>
+    </form>
+    <posts></posts>
+</div>
