@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             
             require_once '../connection.php';
             
-            $sql = "SELECT posts.Title, posts.Content, posts.DateSubmited, posts.Slug, users.UserName FROM `posts`, `users` WHERE users.ID = posts.UserID AND Slug='" . $Slug . "'";
+            $sql = "SELECT posts.ID, posts.Title, posts.Content, posts.DateSubmited, posts.Slug, users.UserName FROM `posts`, `users` WHERE users.ID = posts.UserID AND Slug='" . $Slug . "'";
             
             // excecute SQL statement
             $result = mysqli_query($conn, $sql);

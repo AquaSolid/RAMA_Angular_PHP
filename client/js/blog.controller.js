@@ -36,8 +36,13 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
             });
     };
 
-    $scope.update = function(query) {
-        $http.get('server/blog/updatepost.php?q=' + query)
+    $scope.update = function() {
+        var data = {
+            ID: $scope.ID,
+            Title: $scope.Title,
+            Content: $scope.Content
+        }
+        $http.post('server/blog/updatepost.php', JSON.stringify(data))
             .success(function(data) {
                 $scope.post = data.Update;
             })

@@ -1,20 +1,27 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['q'])) {
-        if (preg_match("/^[A-Za-z]+/", $_GET['q'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (null !== file_get_contents('php://input')) {
+        if (!empty(file_get_contents("php://input"))) {
+
+            require_once '../connection.php';
+            require_once '../utils.php';
             
-            $query = $_GET['q'];
-            require_once '../connection.php';          
+            /*Grabing the data*/
+            $ID = test_input(json_decode(file_get_contents('php://input'), true)['ID']);
+            $Title   = test_input(json_decode(file_get_contents('php://input'), true)['Title']);
+            $Content = test_input(json_decode(file_get_contents('php://input'), true)['Content']);
+            $Slug    = slugify($Title);
             
+            /*Writing the SQL*/
             $sql = "
-            SELECT posts.Title, posts.Content, posts.DateSubmited, posts.Slug, users.UserName 
-            FROM `posts`, `users` 
-            WHERE users.ID = posts.UserID
-            AND posts.Title LIKE '%" . $query . "%' 
-            OR posts.Content LIKE '%" . $query . "%' 
-            OR users.UserName LIKE '%" . $query . "%'";
-            
+            UPDATE `posts` SET 
+            Title = '" . mysqli_real_escape_string($conn, $Title) . "', 
+            Content = '" . mysqli_real_escape_string($conn, $Content) . "', 
+            DateSubmited = CURRENT_TIMESTAMP, 
+            Slug = '" . $Slug . "'
+            WHERE ID= '" . $ID . "'";
+
             $result = mysqli_query($conn, $sql);
             
             if (!$result) {
