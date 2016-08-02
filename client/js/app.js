@@ -1,4 +1,7 @@
 var app = angular.module("myApp", ["ngRoute", "ngSanitize"]);
+
+var position = 'position';
+
 app.config(function($routeProvider) {
     $routeProvider
         .when("/searchbar", {
@@ -12,12 +15,12 @@ app.config(function($routeProvider) {
             templateUrl: "client/html/auth/login.html"
         })
         .when("/logout", {
-            controller: 'AuthController',
             templateUrl: "client/html/auth/logout.html"
         })
         /*Blog*/
         .when("/makepost", {
-            templateUrl: "client/html/blog/makepost.html"
+            templateUrl: "client/html/blog/makepost.html",
+            position: "makepost"
         })
         .when("/posts", {
             templateUrl: "client/html/blog/posts.html"
@@ -26,7 +29,8 @@ app.config(function($routeProvider) {
             templateUrl: "client/html/blog/post.html"
         })
         .when("/:slug/update", {
-            templateUrl: "client/html/blog/makepost.html"
-        });;
-
+            templateUrl: "client/html/blog/makepost.html",
+            position: "updatepost"
+        })
+        .otherwise({ redirectTo: '/' });
 });
