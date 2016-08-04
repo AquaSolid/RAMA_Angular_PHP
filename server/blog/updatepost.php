@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (null !== file_get_contents('php://input')) {
         if (!empty(file_get_contents("php://input"))) {
 
-            require_once '../connection.php';
+            require_once '../connection.php';            
             require_once '../utils.php';
             
             /*Grabing the data*/

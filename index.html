@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
+<!-- Things to add
+
+1. Learn to redirect
+    1. Automatically go to the first post on the list
+    2. After updating go to the post you were updating
+    3. After deleting go to the first post on the list / mainpage
+2. Fixing the logout
+
+ -->
 
 <head>
     <title>
@@ -22,6 +31,9 @@
                     </div>
                 </div>
                 <div class="col-md-7">
+                    <div ng-controller="MainController">{{ctlr}}
+                        <button ng-click="foo()" class="btn btn-info">Foo()</button>
+                    </div>
                     <div ng-view></div>
                 </div>
                 <div class="col-md-2">

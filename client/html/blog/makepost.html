@@ -1,10 +1,6 @@
 <div ng-controller="BlogController as blog">
-    <h2>
-        {{current}}
-    </h2>
     <h3 class="text-center">{{FormTitle}}</h3>
-    <h4>{{FormAction}} - {{FormMethod}}</h4>
-    <form ng-show='user != null' action="{{FormAction}}" method="{{FormMethod}}" class="form-group" name="PostForm">
+    <form ng-show='user != null' ng-submit="{{FormSubmit}}" role="form" class="form-group" name="PostForm">
         <label>Title: </label>
         <div ng-class="(PostForm.Title.$dirty && PostForm.Title.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
             <input data-ng-model="post.Title" data-ng-minlength="3" data-ng-maxlength="255" name="Title" type="text" class="form-control" placeholder="Title" required/>
@@ -16,10 +12,10 @@
             <span ng-class="(PostForm.Content.$dirty && PostForm.Content.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
         </div>
         <div ng-controller="AuthController as auth">
-            <input class="ng-hide" type="number" name="UserID" value="{{user.ID}}">
+            <input class="ng-hide" type="number" data-ng-model="post.UserID" name="UserID" value="{{user.ID}}">
         </div>
         <br>
-        <!--  ng-click="ngUpdate()" -->
-        <input ng-click="ngUpdate()" ng-class="(PostForm.$valid) ? 'btn-success' : 'disabled'" type="submit" class="btn btn-block btn-default">
+        <input type="submit" ng-class="(PostForm.$valid) ? 'btn-success' : 'disabled'" class="btn btn-block btn-default">
     </form>
+    <p ng-show='user == null' class="text-center">You must be <a href="#/login">logged in</a> in order to {{FormTitle | lowercase}}</p>
 </div>
