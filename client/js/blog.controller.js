@@ -4,6 +4,9 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
     var homepage = 'localhost/rama/';
 
     //posts
+
+
+
     $http.get('server/blog/posts.php')
         .success(function(data) {
             if (data.Posts) {
@@ -14,6 +17,7 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
             $scope.data.error = { message: error, status: status };
             console.log($scope.data.error.status);
         });
+
 
     //post
     if ($routeParams.slug) {
@@ -44,9 +48,9 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
             .error(function(error, status) {
                 $scope.data.error = { message: error, status: status };
                 console.log($scope.data.error.status);
-            }); 
+            });
     };
-    
+
     /*
         if ($route.current.$$route.position == null) {
             if ($route.current.$$route.position !== undefined || $route.current.$$route.position !== null) {
@@ -61,28 +65,36 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
         $scope.FormTitle = 'Make a Post';
         $scope.FormAction = 'server/blog/makepost.php';
         $scope.FormMethod = 'POST';
-        $scope.FormSubmit = "ngMake()"
+        $scope.FormSubmit = 'ngMake()'
     };
     if ($location.path().indexOf('update') !== -1) {
         $scope.FormTitle = 'Update a Post';
         $scope.FormAction = null;
         $scope.FormMethod = 'POST';
-        $scope.FormSubmit = "ngUpdate()";
+        $scope.FormSubmit = 'ngUpdate()';
     };
 
-    $scope.clicked = function(){
+    $scope.clicked = function() {
         console.log('clicked');
     };
 
+    $scope.chooseSubmit = function() {
+        if ($scope.FormSubmit) {
+            if ($scope.FormSubmit === 'ngMake()') {
+                $scope.ngMake();
+            } else {
+                $scope.ngUpdate();
+            };
+        }
+    };
+
     $scope.ngMake = function() {
-        alert('submit');
-        /*var data = {
+        var data = {
             Title: $scope.post.Title,
             Content: $scope.post.Content,
-            UserID: $scope.post.UserID
+            UserID: $scope.user.ID
         };
-        alert(JSON.stringify(data));
-        $http.post('server/blog/updatepost.php', JSON.stringify(data))
+        $http.post('server/blog/makepost.php', JSON.stringify(data))
             .success(function(data) {
                 $scope.post = data.Update;
                 $location.path("/");
@@ -90,7 +102,8 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
             .error(function(error, status) {
                 $scope.data.error = { message: error, status: status };
                 console.log($scope.data.error.status);
-            });*/
+            });
+        
     };
 
     $scope.ngUpdate = function() {

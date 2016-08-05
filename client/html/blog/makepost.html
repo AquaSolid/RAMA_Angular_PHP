@@ -1,6 +1,6 @@
 <div ng-controller="BlogController as blog">
     <h3 class="text-center">{{FormTitle}}</h3>
-    <form ng-show='user != null' ng-submit="{{FormSubmit}}" role="form" class="form-group" name="PostForm">
+    <form ng-show='user != null' ng-submit="chooseSubmit()" role="form" class="form-group" name="PostForm">
         <label>Title: </label>
         <div ng-class="(PostForm.Title.$dirty && PostForm.Title.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
             <input data-ng-model="post.Title" data-ng-minlength="3" data-ng-maxlength="255" name="Title" type="text" class="form-control" placeholder="Title" required/>

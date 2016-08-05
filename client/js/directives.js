@@ -1,4 +1,11 @@
 /*From Blog*/
+app.directive('postObserver', function() {
+    return function(scope, element, attrs) {
+        attrs.$observe('postObserver', function(newValue) {
+            console.log('Observe: new=' + newValue);
+        });
+    };
+});
 
 app.directive('searchposts', function() {
     return {
