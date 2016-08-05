@@ -1,23 +1,12 @@
-app.controller('BlogController', function($scope, $location, $http, $sce, $route, $routeParams, $window) {
+app.controller('BlogController', function(postFactory, $scope, $location, $http, $sce, $route, $routeParams, $window) {
 
     $scope.ctlr = 'Blog';
     var homepage = 'localhost/rama/';
 
     //posts
-
-
-
-    $http.get('server/blog/posts.php')
-        .success(function(data) {
-            if (data.Posts) {
-                $scope.posts = data.Posts;
-            };
-        })
-        .error(function(error, status) {
-            $scope.data.error = { message: error, status: status };
-            console.log($scope.data.error.status);
-        });
-
+    postFactory.async().then(function(response) {
+        $scope.posts = response.data.Posts;
+    });
 
     //post
     if ($routeParams.slug) {
@@ -103,7 +92,7 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
                 $scope.data.error = { message: error, status: status };
                 console.log($scope.data.error.status);
             });
-        
+
     };
 
     $scope.ngUpdate = function() {
@@ -131,7 +120,7 @@ app.controller('BlogController', function($scope, $location, $http, $sce, $route
         };
         $http.post('server/blog/deletepost.php', JSON.stringify(data))
             .success(function(result) {
-                $window.location.href = homepage;
+                $location.path("/");
                 $scope.deleted = 'The post has been deleted';
             })
             .error(function(error, status) {
