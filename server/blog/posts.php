@@ -1,7 +1,6 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    
     require_once '../connection.php';
     
     $sql = "SELECT posts.Title, posts.Content, posts.DateSubmited, posts.Slug, users.UserName FROM `posts`, `users` WHERE users.ID = posts.UserID ORDER BY `posts`.`DateSubmited` DESC";
@@ -32,4 +31,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     
     mysqli_close($conn);
 }
+
 ?>

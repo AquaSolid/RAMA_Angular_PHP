@@ -1,16 +1,25 @@
-app.factory('postFactory', function($http) {
-    var postFactory = {
+app.factory('postsFactory', function($http) {
+    var postsFactory = {
         async: function() {
             var promise = $http.get('server/blog/posts.php')
-                .success(function(response) {
+                .then(function(response) {
                     return response;
-                })
-                .error(function(error, status) {
-                    $scope.response.error = { message: error, status: status };
-                    console.log($scope.response.error.status);
                 });
             return promise;
         }
     };
-    return postFactory;
+    return postsFactory;
+});
+
+app.factory('singlePostFactory', function($http, $routeParams) {
+    var singlePostFactory = {
+        async: function() {
+            var promise = $http.get('server/blog/post.php?p=' + $routeParams.slug)
+                .then(function(response) {
+                    return response;
+                });
+            return promise;
+        }
+    };
+    return singlePostFactory;
 });

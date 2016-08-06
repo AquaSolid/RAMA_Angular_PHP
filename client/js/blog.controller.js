@@ -1,15 +1,21 @@
-app.controller('BlogController', function(postFactory, $scope, $location, $http, $sce, $route, $routeParams, $window) {
-
+app.controller('BlogController', function(postsFactory, singlePostFactory, $scope, $location, $http, $sce, $route, $routeParams, $window) {
     $scope.ctlr = 'Blog';
     var homepage = 'localhost/rama/';
 
     //posts
-    postFactory.async().then(function(response) {
+    postsFactory.async().then(function(response) {
         $scope.posts = response.data.Posts;
     });
 
     //post
     if ($routeParams.slug) {
+        singlePostFactory.async().then(function(response) {
+            if (typeof response.data.Post[0] !== undefined && response.data.Post[0] !== null) {
+                $scope.post = response.data.Post[0];
+            };
+        });
+    };
+    /*if ($routeParams.slug) {
         $http.get('server/blog/post.php?p=' + $routeParams.slug)
             .success(function(data) {
                 if (typeof data.Post[0] !== undefined && data.Post[0] !== null) {
@@ -20,7 +26,7 @@ app.controller('BlogController', function(postFactory, $scope, $location, $http,
                 $scope.data.error = { message: error, status: status };
                 console.log($scope.data.error.status);
             });
-    };
+    };*/
 
 
     $scope.ngHTML = function(html) {
@@ -64,14 +70,16 @@ app.controller('BlogController', function(postFactory, $scope, $location, $http,
     };
 
     $scope.clicked = function() {
-        console.log('clicked')/*;
-        postFactory.async().then(function(response) {
-            $scope.posts = response.data.Posts;
-        });
-        $scope.pushPost = function (item) {
-        console.log(item);
-        $scope.posts = $scope.post[item];
-    };*/
+        console.log('clicked');
+        console.log($scope.posts);
+        /*
+            postFactory.async().then(function(response) {
+                $scope.posts = response.data.Posts;
+            });
+            $scope.pushPost = function (item) {
+            console.log(item);
+            $scope.posts = $scope.post[item];
+        };*/
     };
 
     $scope.chooseSubmit = function() {
@@ -92,7 +100,12 @@ app.controller('BlogController', function(postFactory, $scope, $location, $http,
         };
         $http.post('server/blog/makepost.php', JSON.stringify(data))
             .success(function(data) {
-                $scope.post = data.Update;
+                postsFactory.async().then(function(response) {
+                    $scope.posts = response.data.Posts;
+                    $scope.$apply();
+                });
+
+
                 $location.path("/");
             })
             .error(function(error, status) {
@@ -111,7 +124,9 @@ app.controller('BlogController', function(postFactory, $scope, $location, $http,
         };
         $http.post('server/blog/updatepost.php', JSON.stringify(data))
             .success(function(data) {
-                $scope.post = data.Update;
+
+
+
                 $location.path("/");
             })
             .error(function(error, status) {
@@ -135,4 +150,5 @@ app.controller('BlogController', function(postFactory, $scope, $location, $http,
                 console.log($scope.data.error.status);
             });
     };
+
 });
