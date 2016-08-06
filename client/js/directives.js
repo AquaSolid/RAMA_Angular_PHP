@@ -16,6 +16,7 @@ app.directive('searchposts', function() {
 
 app.directive('posts', function() {
     return {
+        scope: false,
         restrict: "E",
         templateUrl: 'client/html/blog/posts.html'
     };

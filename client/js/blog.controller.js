@@ -64,7 +64,14 @@ app.controller('BlogController', function(postFactory, $scope, $location, $http,
     };
 
     $scope.clicked = function() {
-        console.log('clicked');
+        console.log('clicked')/*;
+        postFactory.async().then(function(response) {
+            $scope.posts = response.data.Posts;
+        });
+        $scope.pushPost = function (item) {
+        console.log(item);
+        $scope.posts = $scope.post[item];
+    };*/
     };
 
     $scope.chooseSubmit = function() {

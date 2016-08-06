@@ -15,7 +15,8 @@
             <input class="ng-hide" type="number" data-ng-model="post.UserID" name="UserID" value="{{user.ID}}">
         </div>
         <br>
-        <input type="submit" ng-class="(PostForm.$valid) ? 'btn-success' : 'disabled'" class="btn btn-block btn-default">
+        <input ng-click="clicked()" type="submit" ng-class="(PostForm.$valid) ? 'btn-success' : 'disabled'" class="btn btn-block btn-default">
     </form>
+    <button ng-click="clicked()" class="btn btn-danger">Clicked</button>
     <p ng-show='user == null' class="text-center">You must be <a href="#/login">logged in</a> in order to {{FormTitle | lowercase}}</p>
 </div>
