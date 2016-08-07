@@ -2,9 +2,12 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
     $scope.ctlr = 'Blog';
     var homepage = 'localhost/rama/';
 
+    $scope.data = {};
+
     //posts
     postsFactory.async().then(function(response) {
-        $scope.posts = response.data.Posts;
+        $scope.data.posts = response.data.Posts;
+        console.log($scope.data.posts);
     });
 
     //post
@@ -70,8 +73,8 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
     };
 
     $scope.clicked = function() {
-        console.log('clicked');
-        console.log($scope.posts);
+        console.log($scope.data.posts.length);
+        $scope.data.posts = $scope.data.posts;
         /*
             postFactory.async().then(function(response) {
                 $scope.posts = response.data.Posts;
@@ -102,10 +105,7 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
             .success(function(data) {
                 postsFactory.async().then(function(response) {
                     $scope.posts = response.data.Posts;
-                    $scope.$apply();
                 });
-
-
                 $location.path("/");
             })
             .error(function(error, status) {
@@ -124,9 +124,6 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
         };
         $http.post('server/blog/updatepost.php', JSON.stringify(data))
             .success(function(data) {
-
-
-
                 $location.path("/");
             })
             .error(function(error, status) {
