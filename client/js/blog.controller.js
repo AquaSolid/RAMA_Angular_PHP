@@ -1,13 +1,24 @@
-app.controller('BlogController', function(postsFactory, singlePostFactory, $scope, $location, $http, $sce, $route, $routeParams, $window) {
+app.controller('BlogController', function($rootScope, postsFactory, singlePostFactory, $scope, $location, $http, $sce, $route, $routeParams) {
+    
     $scope.ctlr = 'Blog';
     var homepage = 'localhost/rama/';
+    var blog = this;
 
-    $scope.data = {};
+    var watcher = $scope.$on('newPost', function() {
+        postsFactory.async().then(function (response) {
+            blog.posts = response.data.Posts;
+        });
+    });
+    $scope.$on('$destroy', function() {
+        watcher();
+    });
+
 
     //posts
     postsFactory.async().then(function(response) {
-        $scope.data.posts = response.data.Posts;
-        console.log($scope.data.posts);
+        //$rootScope.posts = response.data.Posts;
+        blog.posts = response.data.Posts;
+        //console.log($rootScope.posts.length);
     });
 
     //post
@@ -18,6 +29,7 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
             };
         });
     };
+
     /*if ($routeParams.slug) {
         $http.get('server/blog/post.php?p=' + $routeParams.slug)
             .success(function(data) {
@@ -30,7 +42,6 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
                 console.log($scope.data.error.status);
             });
     };*/
-
 
     $scope.ngHTML = function(html) {
         return $sce.trustAsHtml(html);
@@ -73,8 +84,8 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
     };
 
     $scope.clicked = function() {
-        console.log($scope.data.posts.length);
-        $scope.data.posts = $scope.data.posts;
+        //console.log($rootScope);
+        //console.log($scope);
         /*
             postFactory.async().then(function(response) {
                 $scope.posts = response.data.Posts;
@@ -103,10 +114,8 @@ app.controller('BlogController', function(postsFactory, singlePostFactory, $scop
         };
         $http.post('server/blog/makepost.php', JSON.stringify(data))
             .success(function(data) {
-                postsFactory.async().then(function(response) {
-                    $scope.posts = response.data.Posts;
-                });
-                $location.path("/");
+                $rootScope.$broadcast('newPost');
+                //$location.path("/");
             })
             .error(function(error, status) {
                 $scope.data.error = { message: error, status: status };

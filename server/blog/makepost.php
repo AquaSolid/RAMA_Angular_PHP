@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $UserID = test_input(json_decode(file_get_contents('php://input'), true)['UserID']);
             $Slug    = slugify($Title);
             
-
             /*Writing the SQL*/
             $sql = "INSERT INTO `posts` (`ID`, `Title`, `Content`, `UserID`, `DateSubmited`, `Slug`) VALUES (NULL, '" . mysqli_real_escape_string($conn, $Title) . "', '" . mysqli_real_escape_string($conn, $Content) . "', '" . $UserID . "', CURRENT_TIMESTAMP, '" . $Slug . "');";
             

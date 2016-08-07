@@ -1,6 +1,18 @@
 app.controller("AuthController", function($scope, $http, $rootScope, $window, $location, $timeout) {
 
     $scope.ctlr = 'Auth';
+    var auth = this;
+
+    // auth.logout = 'You are currently logged in';
+    if (!$rootScope.user) {
+        auth.logout = 'You have logged out successfully';
+    }
+    var watcher = $scope.$on('newLogOut', function() {
+        auth.logout = 'You have logged out successfully';
+    });
+    $scope.$on('$destroy', function() {
+        watcher();
+    });
 
     if ($window.sessionStorage['user'] != null) {
         $rootScope.user = JSON.parse($window.sessionStorage['user']);
@@ -27,8 +39,7 @@ app.controller("AuthController", function($scope, $http, $rootScope, $window, $l
         }
         $http.get('server/auth/logout.php')
             .success(function(status) {
-                $scope.logout = 'You have logged out successfully';
-                $scope.num = 1;
+                $rootScope.$broadcast('newLogOut');
             })
             .error(function(status) {
                 $scope.logout = 'There was an error while trying to log out';

@@ -30,8 +30,8 @@
                     <div class="col-xs-12">
                         <!-- <searchposts></searchposts> -->
                         <div ng-controller="BlogController as blog">
-                        <p ng-bind="data.posts.length"></p>
-                            <div class="dont-break-out" ng-repeat="post in data.posts">
+                        <p ng-bind="posts.length"></p>
+                            <div class="dont-break-out" ng-repeat="post in blog.posts">
                                 <a href="#{{post.Slug}}">
                                     <hr>
                                     <h4>{{post.Title}}</h4>
