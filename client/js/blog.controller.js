@@ -9,6 +9,7 @@ app.controller('BlogController', function($rootScope, postsFactory, singlePostFa
             blog.posts = response.data.Posts;
         });
     });
+
     $scope.$on('$destroy', function() {
         watcher();
     });
@@ -113,9 +114,10 @@ app.controller('BlogController', function($rootScope, postsFactory, singlePostFa
             UserID: $scope.user.ID
         };
         $http.post('server/blog/makepost.php', JSON.stringify(data))
-            .success(function(data) {
+            .success(function(response) {
                 $rootScope.$broadcast('newPost');
-                //$location.path("/");
+                $scope.post.Slug = JSON.parse(response);
+                $location.path($scope.post.Slug);
             })
             .error(function(error, status) {
                 $scope.data.error = { message: error, status: status };
@@ -125,15 +127,16 @@ app.controller('BlogController', function($rootScope, postsFactory, singlePostFa
     };
 
     $scope.ngUpdate = function() {
-        var redirect = homepage + '#/' + $scope.post.Slug + "/";
         var data = {
             ID: $scope.post.ID,
             Title: $scope.post.Title,
             Content: $scope.post.Content
         };
         $http.post('server/blog/updatepost.php', JSON.stringify(data))
-            .success(function(data) {
-                $location.path("/");
+            .success(function(response) {
+                $rootScope.$broadcast('newPost');
+                $scope.post.Slug = JSON.parse(response);
+                $location.path($scope.post.Slug);
             })
             .error(function(error, status) {
                 $scope.data.error = { message: error, status: status };

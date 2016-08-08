@@ -13,18 +13,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $UserID = test_input(json_decode(file_get_contents('php://input'), true)['UserID']);
             $Slug    = slugify($Title);
             
-            /*Writing the SQL*/
-            $sql = "INSERT INTO `posts` (`ID`, `Title`, `Content`, `UserID`, `DateSubmited`, `Slug`) VALUES (NULL, '" . mysqli_real_escape_string($conn, $Title) . "', '" . mysqli_real_escape_string($conn, $Content) . "', '" . $UserID . "', CURRENT_TIMESTAMP, '" . $Slug . "');";
-            
-            /*Executing the SQL*/
-            $result = mysqli_query($conn, $sql);
-            
-            /*Checking the execution*/
-            if (!$result) {
-                http_response_code(404);
-                die(mysqli_error($conn));
+            /* create a prepared statement */
+            if ($sql = $conn->prepare("INSERT INTO `posts` (`ID`, `Title`, `Content`, `UserID`, `DateSubmited`, `Slug`) VALUES (NULL, ?, ?, ?, CURRENT_TIMESTAMP, ?);")) {
+                
+                /* bind parameters for markers */
+                $sql->bind_param("ssis", $Title, $Content, $UserID, $Slug);
+                
+                /* execute query */
+                $sql->execute();
+                
+                /* close statement */
+                $sql->close();
             }
             
+            if ($Slug) {
+                echo json_encode($Slug);
+            }
+
             /*Closing the connection*/
             mysqli_close($conn);
         }

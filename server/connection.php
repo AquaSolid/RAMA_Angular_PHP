@@ -8,10 +8,19 @@ $password = "";
 $database = "rama";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $database);
 
 // Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
 }
+
+/*
+	Options
+	--------
+
+	mysqli_real_escape_string($conn, $Title)
+*/
+
 ?>

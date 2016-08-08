@@ -12,36 +12,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $Title   = test_input(json_decode(file_get_contents('php://input'), true)['Title']);
             $Content = test_input(json_decode(file_get_contents('php://input'), true)['Content']);
             $Slug    = slugify($Title);
-            
-            /*Writing the SQL*/
-            $sql = "
-            UPDATE `posts` SET 
-            Title = '" . mysqli_real_escape_string($conn, $Title) . "', 
-            Content = '" . mysqli_real_escape_string($conn, $Content) . "', 
-            DateSubmited = CURRENT_TIMESTAMP, 
-            Slug = '" . $Slug . "'
-            WHERE ID= '" . $ID . "'";
 
-            $result = mysqli_query($conn, $sql);
-            
-            if (!$result) {
-                http_response_code(404);
-                die(mysqli_error($conn));
+            /* create a prepared statement */
+            if ($sql = $conn->prepare("UPDATE `posts` SET Title = ?, Content = ?, DateSubmited = CURRENT_TIMESTAMP, Slug = ? WHERE ID= ?")) {
+                
+                /* bind parameters for markers */
+                $sql->bind_param("sssi", $Title, $Content, $Slug, $ID);
+                
+                /* execute query */
+                $sql->execute();
+
+                /* close statement */
+                $sql->close();
             }
-            
-            foreach ($result as $row) {
-                $rows[] = $row;
+
+            if ($Slug) {
+                echo json_encode($Slug);
             }
-            mysqli_free_result($result);
-            
-            if (!empty($rows)) {
-                echo json_encode(array(
-                    'Update' => $rows
-                ));
-            } else {
-                echo "No Results";
-            }
-            
+
             mysqli_close($conn);
         }
     }
