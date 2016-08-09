@@ -1,12 +1,4 @@
 /*From Blog*/
-app.directive('postObserver', function() {
-    return function(scope, element, attrs) {
-        attrs.$observe('postObserver', function(newValue) {
-            console.log('Observe: new=' + newValue);
-        });
-    };
-});
-
 app.directive('searchposts', function() {
     return {
         restrict: "E",
@@ -16,7 +8,6 @@ app.directive('searchposts', function() {
 
 app.directive('posts', function() {
     return {
-        scope: false,
         restrict: "E",
         templateUrl: 'client/html/blog/posts.html'
     };

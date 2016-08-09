@@ -1,25 +1,32 @@
 app.controller('BlogController', function($rootScope, postsFactory, singlePostFactory, $scope, $location, $http, $sce, $route, $routeParams) {
-    
+
     $scope.ctlr = 'Blog';
-    var homepage = 'localhost/rama/';
+    var firstPost;
     var blog = this;
 
     var watcher = $scope.$on('newPost', function() {
-        postsFactory.async().then(function (response) {
+        postsFactory.async().then(function(response) {
             blog.posts = response.data.Posts;
+            changeToPost(blog.posts[0].Slug);
         });
     });
+
+    function changeToPost(slug) {
+        if (slug !== undefined && slug !== null) {
+            if ($location.path() == '/') {
+                $location.path(slug);
+            };
+        };
+    };
 
     $scope.$on('$destroy', function() {
         watcher();
     });
 
-
     //posts
     postsFactory.async().then(function(response) {
-        //$rootScope.posts = response.data.Posts;
         blog.posts = response.data.Posts;
-        //console.log($rootScope.posts.length);
+        changeToPost(blog.posts[0].Slug);
     });
 
     //post
@@ -151,8 +158,8 @@ app.controller('BlogController', function($rootScope, postsFactory, singlePostFa
         };
         $http.post('server/blog/deletepost.php', JSON.stringify(data))
             .success(function(result) {
-                $location.path("/");
-                $scope.deleted = 'The post has been deleted';
+                $rootScope.$broadcast('newPost');
+                $location.path('/');
             })
             .error(function(error, status) {
                 $scope.data.error = { message: error, status: status };

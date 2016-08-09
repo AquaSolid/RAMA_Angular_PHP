@@ -1,12 +1,11 @@
 <div ng-controller="BlogController as blog">
     <div ng-controller="AuthController as auth">
-        <div class="row pull-right">
+        <div class="pull-right">
             <a href="#/{{post.Slug}}/update">
                 <button class="btn btn-primary">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </button>
             </a>
-            <!-- <a href="#/{{post.Slug}}/delete"> -->
             <a ng-click="ngDelete()">
                 <button class="btn btn-danger">
                     <span class="glyphicon glyphicon-trash"></span>
@@ -15,6 +14,8 @@
         </div>
     </div>
     <h3 class="dont-break-out">{{post.Title}} - {{post.ID}}</h3>
+    <h4>{{post.Subtitle}}</h4>
+    <img src="{{post.ImageURL}}" class="img-responsive text-center">
     <div class="dont-break-out" ng-bind-html="ngHTML(post.Content)"></div>
     <hr>
     <p class="text-right">{{post.DateSubmited}} by {{post.UserName}}</p>

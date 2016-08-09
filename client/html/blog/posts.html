@@ -1,14 +1,33 @@
-<!-- <div ng-controller="BlogController as blog"> -->
-    <!-- <h3 class="text-center">Posts</h3>  | reverse-->
-    <!-- <div class="dont-break-out" ng-repeat="post in data.posts">
-        <a href="#{{post.Slug}}">
-            <hr>
-            <h4>{{post.Title}}</h4>
-            <div ng-bind-html="ngHTML((post.Content | limitTo : 125) + '..')"></div>
+<!-- <link href="rama/client/css/main.css" rel="stylesheet" type="text/css"> -->
+<div ng-controller="BlogController as blog">
+    <div class="post_container">
+        <a href="#makepost">
+            <button class="btn btn-primary btn-block">Make a post</button>
         </a>
-        <footer class="text-right"> On {{post.DateSubmited}}
-            <br> By {{post.UserName}}
-        </footer>
+        <form class="input-group" role="search" method="GET">
+            <input class="form-control" ng-model="q" placeholder="Search posts..." type="text">
+            <span class="input-group-btn">
+           <button class="btn btn-default" type="submit">
+               <span aria-hidden="true" class="glyphicon glyphicon-search">
+               </span>
+            </button>
+            </span>
+            </input>
+        </form>
     </div>
-    <hr> -->
-<!-- </div> -->
+    <div style="
+    background-image:url('{{post.ImageURL}}');
+    background-repeat:no-repeat;
+    background-position:center;" class="post_container dont-break-out" ng-repeat="post in blog.posts | filter : q">
+        <div class="post-gradient">
+            <a href="#{{post.Slug}}">
+                <h4>{{post.Title}}</h4>
+                <p>{{post.Subtitle}}</p>
+                <!-- <p ng-bind-html="ngHTML(post.Content | limitTo : 125)"></p> -->
+            </a>
+            <footer class="text-right">On {{post.DateSubmited}} By {{post.UserName}}
+            </footer>
+        </div>
+    </div>
+</div>
+</div>

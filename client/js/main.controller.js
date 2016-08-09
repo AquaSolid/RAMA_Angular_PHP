@@ -5,7 +5,6 @@ app.controller('MainController', function($scope, $location, $http) {
 
     $scope.foo = function() {
         $location.path('/');
-        console.log($scope);
     };
 
 });
