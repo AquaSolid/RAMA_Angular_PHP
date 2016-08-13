@@ -3,8 +3,11 @@ var app = angular.module("myApp", ["ngRoute", "ngSanitize"]);
 //app.config(function($locationProvider) { $locationProvider.html5Mode(true).hashPrefix('!'); };)
 app.config(function($routeProvider) {
     $routeProvider
-        .when("/searchbar", {
-            templateUrl: "client/html/searchbar.html"
+        .when("/about", {
+            templateUrl: "client/html/about.html"
+        })
+        .when("/contact", {
+            templateUrl: "client/html/contact.html"
         })
         /*Auth*/
         .when("/signup", {

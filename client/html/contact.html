@@ -1,0 +1,39 @@
+<h1 class="text-center galano">Contact</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae ligula at nulla imperdiet gravida. Vivamus quis justo fermentum, lobortis leo sed, scelerisque nunc. Aenean in ullamcorper magna, vitae fermentum leo. </p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae ligula at nulla imperdiet gravida. Vivamus quis justo fermentum, lobortis leo sed, scelerisque nunc. Aenean in ullamcorper magna, vitae fermentum leo. </p>
+<p>Aenean in ullamcorper magna, vitae fermentum leo. Vivamus et lorem tincidunt, pharetra nibh sit amet, consectetur sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla sagittis ligula aliquet, viverra odio eget, blandit odio. Duis in velit lacinia, dapibus enim non, molestie augue. Donec at tempus nisl. Aliquam erat volutpat.</p>
+<div ng-controller="MainController as main">
+    <form ng-if="user != null" ng-submit="emailSubmit()" role="form" class="form-group" name="ContactForm">
+        <label>Your E-mail: </label>
+        <div ng-controller="AuthController as auth">
+            <div ng-class="(ContactForm.YourEmail.$dirty && ContactForm.YourEmail.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+                <input data-ng-model="user.Email" name="YourEmail" type="email" class="form-control" placeholder="Your E-mail" data-ng-minlength="5" data-ng-maxlength="255" required>
+                <span ng-class="(ContactForm.YourEmail.$dirty && ContactForm.YourEmail.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+        <label>Your Message: </label>
+        <div ng-class="(ContactForm.YourMessage.$dirty && ContactForm.YourMessage.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+            <textarea data-ng-model="main.YourMessage" rows="5" name="YourMessage" type="text" class="form-control" data-ng-minlength="25" placeholder="Your Message" required></textarea>
+            <span ng-class="(ContactForm.YourMessage.$dirty && ContactForm.YourMessage.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+        </div>
+        <div ng-controller="AuthController as auth">
+            <input class="ng-hide" type="text" data-ng-model="user.UserName" name="YourUserName
+" value="{{user.UserName}}">
+        </div>
+        <input type="submit" ng-class="(ContactForm.$valid) ? 'btn-success' : 'disabled'" class="btn btn-block btn-default">
+    </form>
+    <p ng-if='user == null' class="text-center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>You must be <a href="#/login">logged in</a> in order to {{FormTitle | lowercase}}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </p>
+</div>

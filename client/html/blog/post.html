@@ -13,10 +13,10 @@
             </a>
         </div>
     </div>
-    <h3 class="dont-break-out">{{post.Title}} - {{post.ID}}</h3>
+    <h1 class="dont-break-out galano">{{post.Title}}</h1>
     <h4>{{post.Subtitle}}</h4>
-    <img src="{{post.ImageURL}}" class="img-responsive text-center">
-    <div class="dont-break-out" ng-bind-html="ngHTML(post.Content)"></div>
+    <img src="{{post.ImageURL}}" class="img-responsive text-center"><br>
+    <div class="text-justify dont-break-out" ng-bind-html="ngHTML(post.Content)"></div>
     <hr>
     <p class="text-right">{{post.DateSubmited}} by {{post.UserName}}</p>
 </div>

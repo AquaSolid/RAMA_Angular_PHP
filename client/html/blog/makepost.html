@@ -1,10 +1,20 @@
 <div ng-controller="BlogController as blog">
     <h3 class="text-center">{{FormTitle}}</h3>
-    <form ng-show='user != null' ng-submit="chooseSubmit()" role="form" class="form-group" name="PostForm">
+    <form ng-if='user != null' ng-submit="chooseSubmit()" role="form" class="form-group" name="PostForm">
         <label>Title: </label>
         <div ng-class="(PostForm.Title.$dirty && PostForm.Title.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
             <input data-ng-model="post.Title" data-ng-minlength="3" data-ng-maxlength="255" name="Title" type="text" class="form-control" placeholder="Title" required/>
             <span ng-class="(PostForm.Title.$dirty && PostForm.Title.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+        </div>
+        <label>Subtitle: </label>
+        <div ng-class="(PostForm.Subtitle.$dirty && PostForm.Subtitle.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+            <input data-ng-model="post.Subtitle" data-ng-minlength="3" data-ng-maxlength="255" name="Subtitle" type="text" class="form-control" placeholder="Subtitle" required/>
+            <span ng-class="(PostForm.Subtitle.$dirty && PostForm.Subtitle.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
+        </div>
+        <label>Image URL: </label>
+        <div ng-class="(PostForm.ImageURL.$dirty && PostForm.ImageURL.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
+            <input data-ng-model="post.ImageURL" data-ng-minlength="3" data-ng-maxlength="255" name="ImageURL" type="url" class="form-control" placeholder="Image URL" required/>
+            <span ng-class="(PostForm.ImageURL.$dirty && PostForm.ImageURL.$invalid) ? 'glyphicon-warning-sign' : 'glyphicon-ok'" class="glyphicon form-control-feedback"></span>
         </div>
         <label>Content: </label>
         <div ng-class="(PostForm.Content.$dirty && PostForm.Content.$invalid) ? 'has-warning' : 'has-success'" class="form-group has-feedback">
@@ -15,8 +25,8 @@
             <input class="ng-hide" type="number" data-ng-model="post.UserID" name="UserID" value="{{user.ID}}">
         </div>
         <br>
-        <input ng-click="clicked()" type="submit" ng-class="(PostForm.$valid) ? 'btn-success' : 'disabled'" class="btn btn-block btn-default">
+        <input type="submit" ng-class="(PostForm.$valid) ? 'btn-success' : 'disabled'" class="btn btn-block btn-default">
     </form>
-    <button ng-click="clicked()" class="btn btn-danger">Clicked</button>
-    <p ng-show='user == null' class="text-center">You must be <a href="#/login">logged in</a> in order to {{FormTitle | lowercase}}</p>
+    <p ng-if='user == null' class="text-center">
+    <br><br><br><br><br>You must be <a href="#/login">logged in</a> in order to {{FormTitle | lowercase}}<br><br><br><br><br><br><br></p>
 </div>

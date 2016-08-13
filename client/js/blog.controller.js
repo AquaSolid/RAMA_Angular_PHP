@@ -117,6 +117,8 @@ app.controller('BlogController', function($rootScope, postsFactory, singlePostFa
     $scope.ngMake = function() {
         var data = {
             Title: $scope.post.Title,
+            Subtitle: $scope.post.Subtitle,
+            ImageURL: $scope.post.ImageURL,
             Content: $scope.post.Content,
             UserID: $scope.user.ID
         };
@@ -137,6 +139,8 @@ app.controller('BlogController', function($rootScope, postsFactory, singlePostFa
         var data = {
             ID: $scope.post.ID,
             Title: $scope.post.Title,
+            Subtitle: $scope.post.Subtitle,
+            ImageURL: $scope.post.ImageURL,
             Content: $scope.post.Content
         };
         $http.post('server/blog/updatepost.php', JSON.stringify(data))

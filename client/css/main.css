@@ -1,46 +1,22 @@
-html {
-    font-family: tahoma;
+@font-face {
+    font-family: 'GalanoGrotesque';
+    src: url('../fonts/galano_grotesque.woff2') format('woff2'), url('../fonts/galano_grotesque.woff') format('woff'), url('../fonts/galano_grotesque.otf') format('opentype');
 }
 
-table,
-th,
-td {
-    border: 1px solid grey;
-    border-collapse: collapse;
-    padding: 5px;
+@import url(https://fonts.googleapis.com/css?family=Oswald&subset=latin,latin-ext);
+
+/*Font Classes*/
+
+.galano {
+    font-family: "GalanoGrotesque";
 }
 
-table tr:nth-child(odd) {
-    background-color: #f1f1f1;
+.oswald {
+    font-family: 'Oswald', sans-serif;
 }
 
-table tr:nth-child(even) {
-    background-color: #ffffff;
-}
 
-.dont-break-out {
-    /* These are technically the same, but use both */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -ms-word-break: break-all;
-    /* This is the dangerous one in WebKit, as it breaks things wherever */
-    word-break: break-all;
-    /* Instead use this non-standard one: */
-    word-break: break-word;
-    /* Adds a hyphen where the word breaks, if supported (No Blink) */
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-}
-
-.dots-after-text {
-    display: inline-block;
-    width: 180px;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-}
+/*Containers*/
 
 .main_container {
     background-color: #e9ebee;
@@ -49,86 +25,75 @@ table tr:nth-child(even) {
 .post_container {
     background-color: #fff;
     border: 1px solid #ddd;
+    height: 150px;
+    line-height: 1.15;
 }
 
-.navbar {
-    margin-bottom: 10px;
-}
-
-.navbar-default {
+.white-container {
+    padding: 7px;
     background-color: #fff;
+    border: 1px solid #ddd;
+    font-size: 110.5%;
 }
 
-.col-lg-1,
-.col-lg-10,
-.col-lg-11,
-.col-lg-12,
-.col-lg-2,
-.col-lg-3,
-.col-lg-4,
-.col-lg-5,
-.col-lg-6,
-.col-lg-7,
-.col-lg-8,
-.col-lg-9,
-.col-md-1,
-.col-md-10,
-.col-md-11,
-.col-md-12,
-.col-md-2,
-.col-md-3,
-.col-md-4,
-.col-md-5,
-.col-md-6,
-.col-md-7,
-.col-md-8,
-.col-md-9,
-.col-sm-1,
-.col-sm-10,
-.col-sm-11,
-.col-sm-12,
-.col-sm-2,
-.col-sm-3,
-.col-sm-4,
-.col-sm-5,
-.col-sm-6,
-.col-sm-7,
-.col-sm-8,
-.col-sm-9,
-.col-xs-1,
-.col-xs-10,
-.col-xs-11,
-.col-xs-12,
-.col-xs-2,
-.col-xs-3,
-.col-xs-4,
-.col-xs-5,
-.col-xs-6,
-.col-xs-7,
-.col-xs-8,
-.col-xs-9 {
-    padding: 0 5px;
-}
-
-div.post_container div img {margin: 0 auto;} 
-
-.post-gradient
- {
-    background: rgba(0,0,0,0.5);
-background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,1)));
-background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%);
-background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%);
-background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%);
-background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
-
-    padding: 10px 7px 0 7px;
-}
-
-.post-gradient a, .post-gradient a:hover,.post-gradient a:visited,.post-gradient a:focus 
-{color:#fff;}
-.post-gradient h4 {
+.white-container h3 {
     margin-top: 0px;
 }
 
+div.white-container h1 {
+    margin-top: 0px;
+}
+
+div.white-container div img {
+    margin: 0 auto;
+}
+
+.post-gradient {
+    background: rgba(0, 0, 0, 0.5);
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, -0.3) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, -0.3)), color-stop(100%, rgba(0, 0, 0, 1)));
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, -0.3) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, -0.3) 0%, rgba(0, 0, 0, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, -0.3) 0%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, -0.3) 0%, rgba(0, 0, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0);
+    padding: 10px 7px 0 7px;
+    height: 150px;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+}
+
+.post-gradient a,
+.post-gradient a:hover,
+.post-gradient a:visited,
+.post-gradient a:focus {
+    color: #fff;
+}
+
+.post-gradient h4 {
+    font-family: "GalanoGrotesque";
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*Utilities*/
+
+.anchor-parent {
+    position: relative;
+}
+
+.anchor-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.lunar {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.margin-five {
+    margin-bottom: 7px;
+}
